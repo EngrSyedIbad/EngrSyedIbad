@@ -1,6 +1,6 @@
 # 👨‍💻 Welcome to My GitHub Profile!
 
-Hi there! 👋 I'm a passionate **Data Science & AI** professional with a **Post Graduate Diploma in AI & Data Science**. My work mainly revolves around **evaluating machine learning algorithms**, with a strong focus on **Medical AI**, **Computer Vision**, and **Deep Learning**. 
+Hi there! 👋 I'm a passionate **Data Science & AI** researcher with a **Post Graduate Diploma in AI & Data Science**. My work mainly revolves around **evaluating machine learning algorithms**, with a strong focus on **Medical AI**, **Computer Vision**, and **Deep Learning**. 
 
 I’m constantly exploring new technologies and contributing to the AI and Data Science community. Let's connect and collaborate on innovative projects!
 
