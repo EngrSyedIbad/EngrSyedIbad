@@ -69,7 +69,7 @@ Here are some of my favorite repositories you can explore:
 
 Feel free to reach out!
 
-- 🔗 **LinkedIn**(https://www.linkedin.com/in/syed-ibad-hasnain-8357b41b2)  
+- 🔗 **LinkedIn**[LinkedIn](https://www.linkedin.com/in/syed-ibad-hasnain-8357b41b2)  
 
 ---
 
