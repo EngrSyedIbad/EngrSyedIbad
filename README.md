@@ -67,10 +67,9 @@ Here are some of my favorite repositories you can explore:
 
 ## 📢 **Connect With Me**
 
-I love connecting with like-minded individuals. Feel free to reach out!
+Feel free to reach out!
 
-- 🔗 **LinkedIn**: [Your LinkedIn](https://www.linkedin.com/in/syed-ibad-hasnain-8357b41b2)  
-- 🌐 **Website/Blog**: [Your Blog](https://yourwebsite.com)  
+- 🔗 **LinkedIn**(https://www.linkedin.com/in/syed-ibad-hasnain-8357b41b2)  
 
 ---
 
