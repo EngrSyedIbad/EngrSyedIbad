@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syed Ibad Hasnain | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .gradient-bg { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); }
+        .skill-tag { @apply px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full font-medium mr-2 mb-2 inline-block; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+            <span class="font-bold text-xl tracking-tight text-blue-900">SYED IBAD HASNAIN</span>
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#about" class="hover:text-blue-600 transition">About</a>
+                <a href="#experience" class="hover:text-blue-600 transition">Experience</a>
+                <a href="#projects" class="hover:text-blue-600 transition">Projects</a>
+                <a href="#publications" class="hover:text-blue-600 transition">Publications</a>
+                <a href="#contact" class="hover:text-blue-600 transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="gradient-bg text-white py-20 px-4">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+            <div class="w-48 h-48 rounded-2xl overflow-hidden border-4 border-white/20 shadow-2xl">
+                <!-- Replace with your actual image path -->
+                <img src="profile.jpeg" alt="Syed Ibad Hasnain" class="w-full h-full object-cover">
+            </div>
+            <div class="flex-1 text-center md:text-left">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Syed Ibad Hasnain</h1>
+                <p class="text-xl text-blue-200 mb-6 font-light">Biomedical Engineer | AI & Deep Learning Researcher</p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4 text-sm">
+                    <a href="mailto:engr.syedibadhasnain@gmail.com" class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg transition border border-white/10">
+                        <i class="fas fa-envelope mr-2"></i>Email
+                    </a>
+                    <a href="#" class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg transition border border-white/10">
+                        <i class="fab fa-linkedin mr-2"></i>LinkedIn
+                    </a>
+                    <a href="#" class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg transition border border-white/10">
+                        <i class="fab fa-github mr-2"></i>GitHub
+                    </a>
+                </div>
+                <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs text-blue-100/80">
+                    <div><span class="block font-bold text-white">Scopus ID</span> 60139886400</div>
+                    <div><span class="block font-bold text-white">ORCID</span> 0009-0005-4249-0209</div>
+                    <div><span class="block font-bold text-white">PEC License</span> Biomedical/002773</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-16 space-y-24">
+
+        <!-- Profile Summary -->
+        <section id="about">
+            <h2 class="text-3xl font-bold mb-8 border-l-4 border-blue-600 pl-4">Profile Summary</h2>
+            <p class="text-lg text-slate-600 leading-relaxed max-w-4xl">
+                Research-oriented Biomedical Engineer with a strong foundation in Deep Learning, Machine Learning, and AI-driven biomedical applications. Skilled in developing data-driven models and applying computational methods to address complex healthcare challenges. Currently seeking PhD/RA opportunities to contribute to innovative healthcare technologies.
+            </p>
+            
+            <div class="mt-12 grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                    <h3 class="font-bold text-blue-900 mb-4 uppercase text-sm tracking-widest">Research Interests</h3>
+                    <ul class="space-y-2 text-slate-600">
+                        <li>• AI for Healthcare & Decision Support</li>
+                        <li>• Digital Image & Signal Processing</li>
+                        <li>• Deep Learning & Agentic AI</li>
+                        <li>• Multimodality & Explainable AI</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-100">
+                    <h3 class="font-bold text-blue-900 mb-4 uppercase text-sm tracking-widest">Key Achievements</h3>
+                    <ul class="space-y-2 text-slate-600">
+                        <li>• National Funding by IGNITE for COVID-19 Tracking</li>
+                        <li>• Finalist (Ranked 2nd) MSCA COFUND PhD Program</li>
+                        <li>• Registered Scientist - Ministry of Science & Tech</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Skills -->
+        <section id="skills">
+            <h2 class="text-3xl font-bold mb-8 border-l-4 border-blue-600 pl-4">Technical Expertise</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="font-semibold mb-4 text-slate-800">Programming & AI</h3>
+                    <div class="flex flex-wrap">
+                        <span class="skill-tag">Python</span><span class="skill-tag">MATLAB</span>
+                        <span class="skill-tag">PyTorch</span><span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">OpenCV</span><span class="skill-tag">Hugging Face</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4 text-slate-800">Engineering & IoT</h3>
+                    <div class="flex flex-wrap">
+                        <span class="skill-tag">Raspberry Pi</span><span class="skill-tag">Arduino</span>
+                        <span class="skill-tag">COMSOL</span><span class="skill-tag">Proteus</span>
+                        <span class="skill-tag">n8n Automation</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 class="font-semibold mb-4 text-slate-800">Analysis & Writing</h3>
+                    <div class="flex flex-wrap">
+                        <span class="skill-tag">SQL</span><span class="skill-tag">LaTeX</span>
+                        <span class="skill-tag">Mendeley</span><span class="skill-tag">SPSS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects">
+            <div class="flex justify-between items-end mb-8">
+                <h2 class="text-3xl font-bold border-l-4 border-blue-600 pl-4">Key Projects</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Project 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                    <span class="text-blue-600 font-bold text-xs uppercase tracking-widest">Deep Learning</span>
+                    <h3 class="text-xl font-bold mt-2 mb-4">Multi-Class Classification of Renal Lesions</h3>
+                    <p class="text-slate-600 text-sm mb-4">Developed an AI pipeline for CT imaging achieving 99.71% accuracy using a hybrid CNN-KELM approach. Supported efficient, interpretable diagnostic decision support.</p>
+                </div>
+                <!-- Project 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition">
+                    <span class="text-blue-600 font-bold text-xs uppercase tracking-widest">Agentic AI</span>
+                    <h3 class="text-xl font-bold mt-2 mb-4">Biomedical Device Troubleshooting Assistant</h3>
+                    <p class="text-slate-600 text-sm mb-4">Designed a safety-constrained agentic LLM system for clinical engineering workflows with strict policy enforcement and tool-augmented reasoning.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section id="experience">
+            <h2 class="text-3xl font-bold mb-12 border-l-4 border-blue-600 pl-4">Professional Experience</h2>
+            <div class="space-y-12">
+                <div class="relative pl-8 border-l-2 border-slate-200">
+                    <div class="absolute w-4 h-4 bg-blue-600 rounded-full -left-[9px] top-1"></div>
+                    <span class="text-sm font-bold text-blue-600">Aug 2025 — Present</span>
+                    <h3 class="text-xl font-bold">Lecturer</h3>
+                    <p class="text-slate-500 mb-4">Hamdard University, Karachi</p>
+                    <ul class="text-slate-600 text-sm space-y-2">
+                        <li>• Delivering lectures in Medical Image Processing, Telemedicine, and OOP.</li>
+                        <li>• Supervising undergraduate student projects in AI and biomedical applications.</li>
+                    </ul>
+                </div>
+                <div class="relative pl-8 border-l-2 border-slate-200">
+                    <div class="absolute w-4 h-4 bg-slate-300 rounded-full -left-[9px] top-1"></div>
+                    <span class="text-sm font-bold text-slate-500">Sep 2022 — Jul 2024</span>
+                    <h3 class="text-xl font-bold">Mathematics & Robotics Head</h3>
+                    <p class="text-slate-500 mb-4">Army Public School & College System</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications -->
+        <section id="publications" class="bg-slate-900 text-white p-12 rounded-3xl">
+            <h2 class="text-3xl font-bold mb-8">Selected Publications & Conferences</h2>
+            <div class="space-y-6">
+                <div class="border-b border-white/10 pb-6">
+                    <p class="text-blue-300 text-sm mb-2">Rawal Medical Journal (2025) - Scopus Q4</p>
+                    <p class="text-lg font-medium">"Impact of aging on glycemic control: A gender-differentiated analysis of random blood sugar levels."</p>
+                </div>
+                <div class="border-b border-white/10 pb-6">
+                    <p class="text-blue-300 text-sm mb-2">IEEE GCWOT (2026) - Accepted</p>
+                    <p class="text-lg font-medium">"A Machine Learning Approach for Risk Stratification of Cardiovascular Disease in Type 2 Diabetic Cohort."</p>
+                </div>
+                <div>
+                    <p class="text-blue-300 text-sm mb-2">VFAST Transactions on Software Engineering (2025)</p>
+                    <p class="text-lg font-medium">"Evaluation of Machine Learning-Based Methods to Detect Bipolar Disorder."</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-white border-t border-slate-200 pt-16 pb-8">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Get In Touch</h2>
+            <p class="text-slate-500 mb-8">Open for research collaborations and PhD opportunities.</p>
+            <div class="flex justify-center gap-6 mb-12">
+                <a href="mailto:engr.syedibadhasnain@gmail.com" class="text-2xl text-slate-400 hover:text-blue-600 transition"><i class="fas fa-envelope"></i></a>
+                <a href="#" class="text-2xl text-slate-400 hover:text-blue-600 transition"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-2xl text-slate-400 hover:text-blue-600 transition"><i class="fab fa-github"></i></a>
+            </div>
+            <p class="text-xs text-slate-400 font-mono">© 2024 SYED IBAD HASNAIN | BIOMEDICAL ENGINEER</p>
+        </div>
+    </footer>
+
+</body>
+</html>
