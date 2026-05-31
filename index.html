@@ -3,267 +3,981 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Syed Ibad Hasnain | Biomedical Engineer & AI Researcher</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Syed Ibad Hasnain — Biomedical Engineer & AI Researcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
-        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        .gradient-hero { background: linear-gradient(115deg, #0a1928 0%, #0f2c3d 100%); }
-        .skill-badge { @apply px-3 py-1.5 bg-blue-50 text-blue-800 text-sm rounded-full font-medium mr-2 mb-2 inline-block transition hover:bg-blue-100; }
-        .pub-card { transition: all 0.2s ease; }
-        .pub-card:hover { transform: translateY(-2px); background-color: #f8fafc; }
-        .social-icon { transition: all 0.2s ease; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
-        .social-icon:hover { transform: translateY(-3px); opacity: 0.9; }
-        .border-glow { box-shadow: 0 8px 20px -12px rgba(0,0,0,0.15); }
-        .profile-link-card { transition: all 0.2s; }
-        .profile-link-card:hover { background: #f1f5f9; transform: translateX(4px); }
-        .btn-cv { transition: all 0.2s ease; }
-        .btn-cv:hover { transform: translateY(-2px); box-shadow: 0 8px 20px -8px rgba(0,0,0,0.2); }
-        .collab-card { background: linear-gradient(135deg, #eef2ff 0%, #ffffff 100%); border-left: 4px solid #2563eb; }
+        :root {
+            --ink: #0d1117;
+            --ink-light: #3a4554;
+            --paper: #f7f4ef;
+            --paper-dark: #ede9e2;
+            --accent: #1a3a6c;
+            --accent-mid: #2558b0;
+            --accent-bright: #3b82f6;
+            --gold: #c8923a;
+            --gold-light: #e8b96a;
+            --rule: #d5cfc4;
+            --white: #ffffff;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.65;
+            overflow-x: hidden;
+        }
+
+        /* ── NOISE TEXTURE overlay ── */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 999;
+            opacity: .025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(247,244,239,.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--rule);
+        }
+        .nav-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-family: 'Space Mono', monospace;
+            font-size: .85rem;
+            letter-spacing: .06em;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            font-size: .8rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--ink-light);
+            text-decoration: none;
+            transition: color .2s;
+        }
+        .nav-links a:hover { color: var(--accent-mid); }
+        .nav-cv {
+            font-family: 'Space Mono', monospace;
+            font-size: .72rem;
+            background: var(--accent);
+            color: var(--white) !important;
+            padding: .45rem 1.1rem;
+            border-radius: 4px;
+            letter-spacing: .06em;
+            transition: background .2s !important;
+        }
+        .nav-cv:hover { background: var(--accent-mid) !important; color: var(--white) !important; }
+
+        /* ── HERO ── */
+        header {
+            background: var(--accent);
+            color: var(--white);
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        /* Grid-line background */
+        header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        /* Diagonal stripe accent */
+        header::after {
+            content: '';
+            position: absolute;
+            right: -80px;
+            top: 0;
+            bottom: 0;
+            width: 500px;
+            background: linear-gradient(135deg, transparent 40%, rgba(195,140,50,.12) 100%);
+        }
+        .hero-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 4.5rem 2rem 4.5rem;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 3.5rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-photo {
+            width: 160px;
+            height: 200px;
+            border-radius: 4px;
+            overflow: hidden;
+            border: 2px solid rgba(255,255,255,.25);
+            box-shadow: 8px 8px 0 rgba(0,0,0,.25);
+            flex-shrink: 0;
+        }
+        .hero-photo img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: top;
+        }
+        .hero-eyebrow {
+            font-family: 'Space Mono', monospace;
+            font-size: .72rem;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: .8rem;
+        }
+        .hero-name {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.4rem, 5vw, 3.6rem);
+            line-height: 1.1;
+            margin-bottom: .6rem;
+            color: var(--white);
+        }
+        .hero-title {
+            font-size: 1rem;
+            color: rgba(255,255,255,.65);
+            font-weight: 300;
+            margin-bottom: 1.8rem;
+            letter-spacing: .02em;
+        }
+        .hero-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .6rem;
+            margin-bottom: 2rem;
+        }
+        .hero-link {
+            display: inline-flex;
+            align-items: center;
+            gap: .45rem;
+            font-size: .78rem;
+            padding: .45rem .9rem;
+            border: 1px solid rgba(255,255,255,.2);
+            border-radius: 3px;
+            color: rgba(255,255,255,.85);
+            text-decoration: none;
+            background: rgba(255,255,255,.05);
+            transition: all .2s;
+            font-family: 'Space Mono', monospace;
+            letter-spacing: .04em;
+        }
+        .hero-link:hover { background: rgba(255,255,255,.12); border-color: rgba(255,255,255,.4); color: #fff; }
+        .hero-link-cv {
+            background: var(--gold) !important;
+            border-color: var(--gold) !important;
+            color: var(--white) !important;
+            font-weight: 700;
+        }
+        .hero-link-cv:hover { background: var(--gold-light) !important; border-color: var(--gold-light) !important; }
+        .hero-meta {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: .5rem;
+            background: rgba(0,0,0,.2);
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 4px;
+            padding: 1rem 1.2rem;
+        }
+        .hero-meta-item span:first-child {
+            display: block;
+            font-family: 'Space Mono', monospace;
+            font-size: .6rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: .15rem;
+        }
+        .hero-meta-item span:last-child {
+            font-size: .75rem;
+            color: rgba(255,255,255,.75);
+        }
+
+        /* ── LAYOUT ── */
+        main { max-width: 1180px; margin: 0 auto; padding: 4rem 2rem 2rem; }
+        section { margin-bottom: 5rem; }
+
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: .68rem;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: .5rem;
+        }
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1.8rem;
+            padding-bottom: .8rem;
+            border-bottom: 2px solid var(--rule);
+        }
+
+        /* ── ABOUT / PROFILE ── */
+        .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 2rem; }
+        .card {
+            background: var(--white);
+            border: 1px solid var(--rule);
+            border-radius: 4px;
+            padding: 1.8rem;
+            box-shadow: 3px 3px 0 var(--paper-dark);
+        }
+        .about-text { font-size: .95rem; color: var(--ink-light); line-height: 1.8; }
+        .tag-row { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid var(--rule); }
+        .tag {
+            font-size: .72rem;
+            background: #eef2f8;
+            color: var(--accent);
+            padding: .3rem .8rem;
+            border-radius: 2px;
+            font-family: 'Space Mono', monospace;
+            letter-spacing: .03em;
+        }
+        .tag-gold {
+            background: #fdf4e7;
+            color: #8a5a1a;
+        }
+        .interests-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        .interests-list { list-style: none; }
+        .interests-list li {
+            font-size: .85rem;
+            color: var(--ink-light);
+            padding: .55rem 0;
+            border-bottom: 1px solid var(--rule);
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+        }
+        .interests-list li::before {
+            content: '→';
+            color: var(--gold);
+            font-family: 'Space Mono', monospace;
+            font-size: .75rem;
+        }
+        .interests-list li:last-child { border-bottom: none; }
+
+        /* ── COLLABORATE ── */
+        .collab-banner {
+            background: var(--accent);
+            color: var(--white);
+            border-radius: 4px;
+            padding: 2.5rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .collab-banner::before {
+            content: '⟡';
+            position: absolute;
+            right: 220px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 8rem;
+            opacity: .04;
+            pointer-events: none;
+        }
+        .collab-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.6rem;
+            margin-bottom: .5rem;
+        }
+        .collab-text { font-size: .88rem; color: rgba(255,255,255,.7); margin-bottom: 1.2rem; line-height: 1.7; }
+        .collab-pills { display: flex; flex-wrap: wrap; gap: .5rem; }
+        .collab-pill {
+            font-size: .72rem;
+            background: rgba(255,255,255,.1);
+            border: 1px solid rgba(255,255,255,.15);
+            padding: .3rem .85rem;
+            border-radius: 100px;
+            color: rgba(255,255,255,.85);
+            font-family: 'Space Mono', monospace;
+        }
+        .btn-collab {
+            display: inline-flex;
+            align-items: center;
+            gap: .6rem;
+            background: var(--gold);
+            color: var(--white);
+            padding: .85rem 1.8rem;
+            border-radius: 3px;
+            text-decoration: none;
+            font-size: .85rem;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: background .2s;
+        }
+        .btn-collab:hover { background: var(--gold-light); color: var(--white); }
+        .collab-email { font-family: 'Space Mono', monospace; font-size: .65rem; color: rgba(255,255,255,.45); margin-top: .6rem; text-align: center; }
+
+        /* ── PROFILES GRID ── */
+        .profiles-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .9rem; }
+        .profile-card {
+            background: var(--white);
+            border: 1px solid var(--rule);
+            border-radius: 3px;
+            padding: 1rem 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: .75rem;
+            text-decoration: none;
+            color: var(--ink);
+            transition: all .2s;
+            box-shadow: 2px 2px 0 var(--paper-dark);
+        }
+        .profile-card:hover {
+            transform: translate(-2px,-2px);
+            box-shadow: 4px 4px 0 var(--accent-bright);
+            border-color: var(--accent-bright);
+        }
+        .profile-card i { font-size: 1.3rem; width: 1.4rem; text-align: center; }
+        .profile-card span { font-size: .82rem; font-weight: 500; }
+
+        /* ── SKILLS ── */
+        .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .skill-card {
+            background: var(--white);
+            border: 1px solid var(--rule);
+            border-radius: 3px;
+            padding: 1.6rem;
+            box-shadow: 3px 3px 0 var(--paper-dark);
+        }
+        .skill-card-title {
+            font-family: 'Space Mono', monospace;
+            font-size: .72rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            padding-bottom: .7rem;
+            border-bottom: 1px solid var(--rule);
+        }
+        .skill-list { list-style: none; }
+        .skill-list li {
+            font-size: .85rem;
+            color: var(--ink-light);
+            padding: .35rem 0;
+            border-bottom: 1px dashed var(--rule);
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+        .skill-list li::before { content: '·'; color: var(--gold); font-size: 1.2rem; line-height: 0; }
+        .skill-list li:last-child { border-bottom: none; }
+
+        /* ── EXPERIENCE TIMELINE ── */
+        .timeline { position: relative; padding-left: 1.8rem; }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: .5rem;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent) 60%, transparent);
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2.2rem;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -1.95rem;
+            top: .35rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--accent);
+            border: 2px solid var(--paper);
+            box-shadow: 0 0 0 2px var(--accent);
+        }
+        .timeline-dot.inactive {
+            background: var(--rule);
+            box-shadow: 0 0 0 2px var(--rule);
+        }
+        .timeline-date {
+            font-family: 'Space Mono', monospace;
+            font-size: .68rem;
+            letter-spacing: .1em;
+            color: var(--gold);
+            text-transform: uppercase;
+            margin-bottom: .2rem;
+        }
+        .timeline-role {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.15rem;
+            color: var(--ink);
+            margin-bottom: .15rem;
+        }
+        .timeline-org { font-size: .82rem; color: var(--ink-light); margin-bottom: .6rem; }
+        .timeline-bullets { list-style: none; }
+        .timeline-bullets li {
+            font-size: .83rem;
+            color: var(--ink-light);
+            padding: .2rem 0;
+            padding-left: 1rem;
+            position: relative;
+        }
+        .timeline-bullets li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-size: .72rem;
+            top: .22rem;
+        }
+
+        /* ── PROJECTS ── */
+        .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        .project-card {
+            background: var(--white);
+            border: 1px solid var(--rule);
+            border-radius: 3px;
+            padding: 1.8rem;
+            box-shadow: 3px 3px 0 var(--paper-dark);
+            transition: all .2s;
+        }
+        .project-card:hover {
+            transform: translate(-2px,-2px);
+            box-shadow: 5px 5px 0 var(--accent);
+        }
+        .project-cat {
+            font-family: 'Space Mono', monospace;
+            font-size: .65rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: .6rem;
+        }
+        .project-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: .7rem;
+            line-height: 1.3;
+        }
+        .project-desc { font-size: .83rem; color: var(--ink-light); line-height: 1.75; }
+
+        /* ── PUBLICATIONS ── */
+        .pubs-wrapper {
+            background: var(--ink);
+            color: var(--white);
+            border-radius: 4px;
+            padding: 2.5rem;
+        }
+        .pubs-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.8rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(255,255,255,.12);
+        }
+        .pubs-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.6rem;
+            color: var(--white);
+        }
+        .scholar-link {
+            font-family: 'Space Mono', monospace;
+            font-size: .68rem;
+            letter-spacing: .1em;
+            color: var(--gold-light);
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,.15);
+            padding: .4rem 1rem;
+            border-radius: 2px;
+            transition: background .2s;
+        }
+        .scholar-link:hover { background: rgba(255,255,255,.08); }
+        .pub-item {
+            padding: 1.2rem 0;
+            border-bottom: 1px solid rgba(255,255,255,.07);
+            transition: all .15s;
+        }
+        .pub-item:last-of-type { border-bottom: none; }
+        .pub-item:hover { padding-left: .5rem; }
+        .pub-journal {
+            font-family: 'Space Mono', monospace;
+            font-size: .65rem;
+            color: var(--gold-light);
+            letter-spacing: .06em;
+            margin-bottom: .35rem;
+        }
+        .pub-authors {
+            font-size: .88rem;
+            color: rgba(255,255,255,.85);
+            line-height: 1.6;
+            margin-bottom: .4rem;
+        }
+        .pub-doi {
+            font-family: 'Space Mono', monospace;
+            font-size: .68rem;
+            color: rgba(255,255,255,.4);
+            text-decoration: none;
+            transition: color .2s;
+        }
+        .pub-doi:hover { color: var(--gold-light); }
+        .pub-note {
+            margin-top: 1.2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,.1);
+            font-size: .78rem;
+            color: rgba(255,255,255,.45);
+            font-style: italic;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--ink);
+            color: var(--white);
+            padding: 3.5rem 2rem 2rem;
+            margin-top: 6rem;
+        }
+        .footer-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255,255,255,.1);
+        }
+        .footer-name {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.6rem;
+            margin-bottom: .3rem;
+        }
+        .footer-sub { font-size: .82rem; color: rgba(255,255,255,.5); margin-bottom: 1.2rem; }
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            font-family: 'Space Mono', monospace;
+            font-size: .72rem;
+            color: rgba(255,255,255,.6);
+            margin-bottom: .5rem;
+        }
+        .footer-contact-item i { color: var(--gold-light); width: 14px; }
+        .footer-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .8rem;
+            align-items: flex-start;
+            justify-content: flex-end;
+        }
+        .footer-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            background: rgba(255,255,255,.06);
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 3px;
+            color: rgba(255,255,255,.6);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all .2s;
+        }
+        .footer-icon:hover {
+            background: rgba(255,255,255,.12);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+        .footer-bottom {
+            padding-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .footer-legal {
+            font-family: 'Space Mono', monospace;
+            font-size: .62rem;
+            color: rgba(255,255,255,.3);
+        }
+        .footer-cv-btn {
+            font-family: 'Space Mono', monospace;
+            font-size: .68rem;
+            background: var(--gold);
+            color: var(--white);
+            padding: .45rem 1.1rem;
+            border-radius: 3px;
+            text-decoration: none;
+            transition: background .2s;
+        }
+        .footer-cv-btn:hover { background: var(--gold-light); color: var(--white); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .hero-inner { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+            .hero-links { justify-content: center; }
+            .hero-meta { grid-template-columns: repeat(2, 1fr); }
+            .hero-photo { margin: 0 auto; }
+            .about-grid { grid-template-columns: 1fr; }
+            .profiles-grid { grid-template-columns: repeat(2, 1fr); }
+            .skills-grid { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .collab-banner { grid-template-columns: 1fr; text-align: center; }
+            .collab-pills { justify-content: center; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-icons { justify-content: flex-start; }
+            .nav-links { display: none; }
+        }
+
+        /* Entry animations */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .hero-inner > * {
+            animation: fadeUp .7s ease both;
+        }
+        .hero-inner > *:nth-child(2) { animation-delay: .1s; }
     </style>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased">
+<body>
 
-    <!-- Sticky Navigation -->
-    <nav class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm">
-        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="#" class="font-bold text-xl tracking-tight bg-gradient-to-r from-blue-800 to-cyan-700 bg-clip-text text-transparent">S.I. HASNAIN</a>
-            <div class="hidden md:flex gap-8 text-sm font-medium items-center">
-                <a href="#about" class="text-slate-600 hover:text-blue-700 transition">About</a>
-                <a href="#experience" class="text-slate-600 hover:text-blue-700 transition">Experience</a>
-                <a href="#projects" class="text-slate-600 hover:text-blue-700 transition">Research</a>
-                <a href="#publications" class="text-slate-600 hover:text-blue-700 transition">Publications</a>
-                <a href="#collaborate" class="text-slate-600 hover:text-blue-700 transition">Collaborate</a>
-                <a href="#contact" class="text-slate-600 hover:text-blue-700 transition">Connect</a>
-                <!-- CV DOWNLOAD BUTTON IN NAV -->
-                <a href="Syed_Ibad_Hasnain_CV.pdf" download class="ml-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-1.5 rounded-lg text-sm font-medium transition flex items-center gap-2 shadow-sm"><i class="fas fa-download"></i> Download CV</a>
-            </div>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">S.I. HASNAIN</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Research</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#collaborate">Collaborate</a></li>
+                <li><a href="#contact">Connect</a></li>
+                <li><a href="Syed_Ibad_Hasnain_CV.pdf" download class="nav-cv"><i class="fas fa-download" style="margin-right:.4rem"></i>Download CV</a></li>
+            </ul>
         </div>
     </nav>
 
-    <!-- Hero Section with complete social icon set + CV button -->
-    <header class="gradient-hero text-white py-16 px-6 relative">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
-            <div class="w-44 h-56 rounded-2xl overflow-hidden border-4 border-white/20 shadow-2xl bg-white/10">
-                <!-- Profile placeholder (CV profile image) -->
-                <img src="profile.jpeg" alt="Syed Ibad Hasnain" class="w-full h-full object-cover object-top">
+    <!-- Hero -->
+    <header>
+        <div class="hero-inner">
+            <div class="hero-photo">
+                <img src="profile.jpeg" alt="Syed Ibad Hasnain">
             </div>
-            <div class="flex-1 text-center md:text-left">
-                <h1 class="text-4xl md:text-5xl font-bold mb-3 tracking-tight">Syed Ibad Hasnain</h1>
-                <p class="text-xl text-blue-100 font-light mb-5">Biomedical Engineer | AI & Deep Learning Researcher</p>
-                <!-- Enhanced social + academic icons bar with CV download -->
-                <div class="flex flex-wrap justify-center md:justify-start gap-3 text-sm mb-6">
-                    <a href="mailto:ibad.hasnain@hamdard.edu.pk" class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-xl transition flex items-center gap-2 backdrop-blur-sm"><i class="fas fa-envelope"></i> Official</a>
-                    <a href="mailto:engr.syedibadhasnain@gmail.com" class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-xl transition flex items-center gap-2"><i class="fas fa-envelope-open-text"></i> Personal</a>
-                    <a href="https://www.linkedin.com/in/syed-ibad-hasnain-8357b41b2/" target="_blank" class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-xl transition flex items-center gap-2"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                    <a href="https://github.com/EngrSyedIbad" target="_blank" class="bg-white/10 hover:bg-white/20 px-4 py-2 rounded-xl transition flex items-center gap-2"><i class="fab fa-github"></i> GitHub</a>
-                    <!-- CV download button in hero -->
-                    <a href="Syed_Ibad_Hasnain_CV.pdf" download class="bg-blue-500 hover:bg-blue-600 px-5 py-2 rounded-xl transition flex items-center gap-2 font-semibold shadow-md btn-cv"><i class="fas fa-file-pdf"></i> Download CV (PDF)</a>
+            <div>
+                <p class="hero-eyebrow">Biomedical Engineer · AI Researcher · Educator</p>
+                <h1 class="hero-name">Syed Ibad<br>Hasnain</h1>
+                <p class="hero-title">Deep Learning for Healthcare &nbsp;·&nbsp; Medical Imaging &nbsp;·&nbsp; Agentic AI</p>
+                <div class="hero-links">
+                    <a href="mailto:ibad.hasnain@hamdard.edu.pk" class="hero-link"><i class="fas fa-envelope"></i> Official</a>
+                    <a href="mailto:engr.syedibadhasnain@gmail.com" class="hero-link"><i class="fas fa-envelope-open-text"></i> Personal</a>
+                    <a href="https://www.linkedin.com/in/syed-ibad-hasnain-8357b41b2/" target="_blank" class="hero-link"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="https://github.com/EngrSyedIbad" target="_blank" class="hero-link"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="Syed_Ibad_Hasnain_CV.pdf" download class="hero-link hero-link-cv"><i class="fas fa-file-pdf"></i> Download CV (PDF)</a>
                 </div>
-                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs text-blue-100/90 bg-black/20 p-4 rounded-2xl backdrop-blur-sm">
-                    <div><span class="block font-bold text-white">Scopus ID</span> 60139886400</div>
-                    <div><span class="block font-bold text-white">ORCID</span> 0009-0005-4249-0209</div>
-                    <div><span class="block font-bold text-white">PEC License</span> Biomedical/002773</div>
-                    <div><span class="block font-bold text-white">NSD Scientist</span> PASTIC (MoST)</div>
+                <div class="hero-meta">
+                    <div class="hero-meta-item"><span>Scopus ID</span><span>60139886400</span></div>
+                    <div class="hero-meta-item"><span>ORCID</span><span>0009-0005-4249-0209</span></div>
+                    <div class="hero-meta-item"><span>PEC License</span><span>BME / 002773</span></div>
+                    <div class="hero-meta-item"><span>NSD Scientist</span><span>PASTIC (MoST)</span></div>
                 </div>
             </div>
         </div>
     </header>
 
-    <main class="max-w-6xl mx-auto px-6 py-14 space-y-20">
+    <main>
 
-        <!-- Profile Summary + Faculty Badge -->
+        <!-- About -->
         <section id="about">
-            <h2 class="text-3xl font-bold mb-7 border-l-5 border-blue-600 pl-5">Profile Summary</h2>
-            <div class="grid md:grid-cols-3 gap-10">
-                <div class="md:col-span-2 bg-white p-7 rounded-2xl shadow-sm border border-slate-100">
-                    <p class="text-slate-700 leading-relaxed text-lg">Research-oriented Biomedical Engineer with a strong foundation in Deep Learning, Machine Learning, and AI-driven biomedical applications. Skilled in developing data-driven models and applying computational methods to address complex healthcare challenges. Seeking PhD/RA opportunities to contribute to impactful research, collaborate with interdisciplinary teams, and advance intelligent healthcare solutions.</p>
-                    <div class="mt-6 flex flex-wrap gap-3 pt-3 border-t border-slate-100">
-                        <a href="https://www.hamdard.edu.pk/faculty-of-engineering-sciences-technology/" target="_blank" class="bg-blue-50 text-blue-700 text-xs px-3 py-1 rounded-full flex items-center gap-1 hover:bg-blue-100 transition"><i class="fas fa-university"></i> Faculty Profile @ Hamdard University</a>
-                        <span class="bg-blue-50 text-blue-700 text-xs px-3 py-1 rounded-full">🏆 MSCA COFUND Finalist (Ranked 2nd)</span>
-                        <span class="bg-blue-50 text-blue-700 text-xs px-3 py-1 rounded-full">📄 Reviewer: Biosensors & Bioelectronics</span>
+            <p class="section-label">01 — Profile</p>
+            <h2 class="section-title">About</h2>
+            <div class="about-grid">
+                <div class="card">
+                    <p class="about-text">Research-oriented Biomedical Engineer with a strong foundation in Deep Learning, Machine Learning, and AI-driven biomedical applications. Skilled in developing data-driven models and applying computational methods to address complex healthcare challenges. Seeking PhD / Research Associate opportunities to contribute to impactful research, collaborate with interdisciplinary teams, and advance intelligent healthcare solutions.</p>
+                    <div class="tag-row">
+                        <a href="https://www.hamdard.edu.pk/faculty-of-engineering-sciences-technology/" target="_blank" class="tag"><i class="fas fa-university" style="margin-right:.35rem"></i> Faculty @ Hamdard University</a>
+                        <span class="tag tag-gold">🏆 MSCA COFUND Finalist — Ranked 2nd</span>
+                        <span class="tag">📄 Reviewer · Biosensors &amp; Bioelectronics</span>
                     </div>
                 </div>
-                <div class="bg-white p-7 rounded-2xl shadow-sm border border-slate-100">
-                    <h3 class="font-bold text-blue-900 text-lg mb-3 flex items-center gap-2"><i class="fas fa-microscope text-blue-600"></i> Research Interests</h3>
-                    <ul class="space-y-2 text-slate-600 text-sm">
-                        <li>• Digital Image & Signal Processing</li>
-                        <li>• AI for Clinical Decision Support (XAI, Multimodal)</li>
-                        <li>• Deep Learning, NLP & Agentic AI</li>
-                        <li>• Medical Computer Vision</li>
+                <div class="card">
+                    <p class="interests-title">Research Interests</p>
+                    <ul class="interests-list">
+                        <li>Digital Image &amp; Signal Processing</li>
+                        <li>AI for Clinical Decision Support (XAI, Multimodal)</li>
+                        <li>Deep Learning, NLP &amp; Agentic AI</li>
+                        <li>Medical Computer Vision</li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <!-- OPEN FOR COLLABORATION & CO-SUPERVISION SECTION (NEW) -->
-        <section id="collaborate" class="collab-card rounded-2xl p-8 shadow-md border border-blue-100 bg-gradient-to-r from-blue-50/80 to-white">
-            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-                <div class="flex-1">
-                    <div class="flex items-center gap-3 mb-3">
-                        <i class="fas fa-handshake text-3xl text-blue-600"></i>
-                        <h2 class="text-2xl md:text-3xl font-bold text-slate-800">Open for Research Collaboration & Co-Supervision</h2>
-                    </div>
-                    <p class="text-slate-600 text-base leading-relaxed">I actively welcome interdisciplinary research partnerships and co-supervision opportunities in <strong>AI for Healthcare, Medical Imaging, Deep Learning, and Biomedical Signal Processing</strong>. Whether you are a fellow researcher, PhD candidate, or graduate student seeking guidance — let's advance healthcare technology together.</p>
-                    <div class="flex flex-wrap gap-4 mt-5">
-                        <div class="flex items-center gap-2 text-sm bg-white px-4 py-2 rounded-full shadow-sm"><i class="fas fa-chalkboard-user text-blue-500"></i> <span>Co-supervising MSc/BSc projects</span></div>
-                        <div class="flex items-center gap-2 text-sm bg-white px-4 py-2 rounded-full shadow-sm"><i class="fas fa-flask text-blue-500"></i> <span>Joint research proposals</span></div>
-                        <div class="flex items-center gap-2 text-sm bg-white px-4 py-2 rounded-full shadow-sm"><i class="fas fa-file-alt text-blue-500"></i> <span>Grant collaborations</span></div>
-                    </div>
-                </div>
-                <div class="text-center md:text-right">
-                    <a href="mailto:ibad.hasnain@hamdard.edu.pk?subject=Research%20Collaboration%20/%20Co-supervision%20Inquiry" class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl transition shadow-md"><i class="fas fa-envelope"></i> Reach out to collaborate</a>
-                    <p class="text-xs text-slate-500 mt-2">📧 ibad.hasnain@hamdard.edu.pk</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Academic & Professional Profiles (All links added) -->
-        <section>
-            <h2 class="text-3xl font-bold mb-7 border-l-5 border-blue-600 pl-5">Researcher Profiles</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <a href="https://scholar.google.com/citations?user=9TFudOQAAAAJ&hl=en" target="_blank" class="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition group">
-                    <i class="fas fa-graduation-cap text-2xl text-blue-600"></i> <span class="font-medium text-slate-700 group-hover:text-blue-700">Google Scholar</span>
-                </a>
-                <a href="https://www.scopus.com/authid/detail.uri?authorId=60139886400" target="_blank" class="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition">
-                    <i class="fas fa-book-open text-2xl text-indigo-500"></i> <span class="font-medium text-slate-700">Scopus</span>
-                </a>
-                <a href="https://www.webofscience.com/wos/author/record/73878560" target="_blank" class="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition">
-                    <i class="fas fa-globe text-2xl text-purple-500"></i> <span class="font-medium text-slate-700">Web of Science</span>
-                </a>
-                <a href="https://www.researchgate.net/profile/Syed-Ibad-Hasnain-2" target="_blank" class="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition">
-                    <i class="fab fa-researchgate text-2xl text-teal-600"></i> <span class="font-medium text-slate-700">ResearchGate</span>
-                </a>
-                <a href="https://orcid.org/0009-0005-4249-0209" target="_blank" class="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition">
-                    <i class="fab fa-orcid text-2xl text-green-600"></i> <span class="font-medium text-slate-700">ORCID</span>
-                </a>
-                <a href="https://huggingface.co/ibadhasnain" target="_blank" class="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition">
-                    <i class="fas fa-robot text-2xl text-amber-600"></i> <span class="font-medium text-slate-700">Hugging Face</span>
-                </a>
-                <a href="https://github.com/EngrSyedIbad" target="_blank" class="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition">
-                    <i class="fab fa-github text-2xl text-slate-700"></i> <span class="font-medium text-slate-700">GitHub</span>
-                </a>
-                <a href="https://www.linkedin.com/in/syed-ibad-hasnain-8357b41b2/" target="_blank" class="flex items-center gap-3 bg-white p-4 rounded-xl shadow-sm border border-slate-100 hover:shadow-md transition">
-                    <i class="fab fa-linkedin text-2xl text-blue-700"></i> <span class="font-medium text-slate-700">LinkedIn</span>
-                </a>
-            </div>
-        </section>
-
-<!-- Technical Skills -->
-<section>
-    <h2 class="text-3xl font-bold mb-7 border-l-5 border-blue-600 pl-5">Technical Arsenal</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-white p-6 rounded-xl shadow-sm">
-            <h3 class="font-semibold mb-3 text-blue-800"><i class="fab fa-python mr-2"></i> AI/ML Stack</h3>
-            <ul class="list-disc pl-5 space-y-1">
-                <li>Python</li>
-                <li>PyTorch</li>
-                <li>TensorFlow</li>
-                <li>Scikit-learn</li>
-                <li>Hugging Face</li>
-                <li>OpenCV</li>
-            </ul>
-        </div>
-        <div class="bg-white p-6 rounded-xl shadow-sm">
-            <h3 class="font-semibold mb-3 text-blue-800"><i class="fas fa-microchip mr-2"></i> IoT & Embedded</h3>
-            <ul class="list-disc pl-5 space-y-1">
-                <li>Raspberry Pi</li>
-                <li>Arduino</li>
-                <li>ESP32</li>
-                <li>COMSOL</li>
-                <li>Proteus</li>
-                <li>n8n</li>
-            </ul>
-        </div>
-        <div class="bg-white p-6 rounded-xl shadow-sm">
-            <h3 class="font-semibold mb-3 text-blue-800"><i class="fas fa-database mr-2"></i> Data & Writing</h3>
-            <ul class="list-disc pl-5 space-y-1">
-                <li>SQL</li>
-                <li>LaTeX</li>
-                <li>Mendeley</li>
-                <li>MATLAB</li>
-                <li>R</li>
-            </ul>
-        </div>
-    </div>
-</section>
-        <!-- Work Experience -->
-        <section id="experience">
-            <h2 class="text-3xl font-bold mb-7 border-l-5 border-blue-600 pl-5">Professional Journey</h2>
-            <div class="space-y-8">
-                <div class="relative pl-8 border-l-2 border-blue-200"><div class="absolute w-3.5 h-3.5 bg-blue-600 rounded-full -left-[7px] top-1.5"></div><span class="text-sm font-semibold text-blue-700">Aug 2025 – Present</span><h3 class="text-xl font-bold text-slate-800">Lecturer – Biomedical Engineering</h3><p class="text-slate-500 mb-2">Hamdard University, Faculty of Engineering, Karachi</p><ul class="text-slate-600 text-sm space-y-1 list-disc list-inside"><li>Delivering courses: Medical Image Processing, Telemedicine Systems, OOP.</li><li>Supervising undergraduate AI-driven biomedical projects & research.</li><li>Actively offering co-supervision for final year projects in AI/Healthcare.</li></ul></div>
-                <div class="relative pl-8 border-l-2 border-slate-200"><div class="absolute w-3.5 h-3.5 bg-slate-400 rounded-full -left-[7px] top-1.5"></div><span class="text-sm font-semibold text-slate-600">Aug 2024 – Jul 2025</span><h3 class="text-xl font-bold text-slate-800">IGCSE/GCE Educator (CS & Physics)</h3><p class="text-slate-500">The Next School – Alpha Education Network, Karachi</p></div>
-                <div class="relative pl-8 border-l-2 border-slate-200"><div class="absolute w-3.5 h-3.5 bg-slate-400 rounded-full -left-[7px] top-1.5"></div><span class="text-sm font-semibold text-slate-600">Sep 2022 – Jul 2024</span><h3 class="text-xl font-bold text-slate-800">Mathematics & Robotics Head</h3><p class="text-slate-500">Army Public School & College System</p></div>
-            </div>
-        </section>
-
-        <!-- Featured Projects -->
-        <section id="projects">
-            <h2 class="text-3xl font-bold mb-7 border-l-5 border-blue-600 pl-5">Flagship Research Projects</h2>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white p-7 rounded-2xl shadow-md border border-slate-200 transition-all hover:shadow-lg"><div class="flex items-center gap-2 text-blue-700 text-sm font-semibold uppercase tracking-wide"><i class="fas fa-microscope"></i> Deep Learning – CT Imaging</div><h3 class="text-xl font-bold mt-2 mb-3">Hybrid CNN-KELM for Renal Lesion Classification</h3><p class="text-slate-600 text-sm">Achieved 99.71% accuracy (multi-class: cysts, stones, tumors) using lightweight CNNs + SMOTE. Clinically deployable AI pipeline for CT-based diagnosis.</p></div>
-                <div class="bg-white p-7 rounded-2xl shadow-md border border-slate-200 transition-all hover:shadow-lg"><div class="flex items-center gap-2 text-blue-700 text-sm font-semibold uppercase tracking-wide"><i class="fas fa-robot"></i> Agentic AI / LLM</div><h3 class="text-xl font-bold mt-2 mb-3">Biomedical Device Troubleshooting Assistant</h3><p class="text-slate-600 text-sm">Safety-constrained agentic LLM with tool-augmented reasoning, policy enforcement, structured QC guidance for clinical engineering.</p></div>
-                <div class="bg-white p-7 rounded-2xl shadow-md border border-slate-200"><div class="flex items-center gap-2 text-blue-700 text-sm font-semibold uppercase tracking-wide"><i class="fas fa-heartbeat"></i> Predictive Healthcare</div><h3 class="text-xl font-bold mt-2 mb-3">CKD & CVD Risk Prediction (Diabetic Patients)</h3><p class="text-slate-600 text-sm">ML pipeline on Pakistan clinical dataset (n=703), Random Forest achieved 92% accuracy. arXiv:2510.14997.</p></div>
-                <div class="bg-white p-7 rounded-2xl shadow-md border border-slate-200"><div class="flex items-center gap-2 text-blue-700 text-sm font-semibold uppercase tracking-wide"><i class="fas fa-wifi"></i> IoT Health</div><h3 class="text-xl font-bold mt-2 mb-3">Portable Health Tracking System (COVID-19 Era)</h3><p class="text-slate-600 text-sm">Real-time patient monitoring (SpO2, temperature, HR) with mobile app — funded by IGNITE (Ministry of IT, Pakistan).</p></div>
-            </div>
-        </section>
-
-        <!-- PUBLICATIONS with all DOIs + active links -->
-        <section id="publications" class="bg-gradient-to-r from-slate-900 to-slate-800 text-white p-8 md:p-12 rounded-3xl shadow-xl">
-            <div class="flex flex-wrap justify-between items-center mb-8 border-b border-white/20 pb-4">
-                <h2 class="text-3xl font-bold flex items-center gap-3"><i class="fas fa-book-open"></i> Publications & DOIs</h2>
-                <a href="https://scholar.google.com/citations?user=9TFudOQAAAAJ&hl=en" target="_blank" class="bg-white/10 hover:bg-white/20 px-5 py-2 rounded-full text-sm flex items-center gap-2 transition"><i class="fas fa-graduation-cap"></i> Google Scholar profile →</a>
-            </div>
-            <div class="space-y-5">
-                <div class="pub-card bg-white/5 p-5 rounded-xl border border-white/10"><p class="text-blue-300 text-sm font-mono mb-1">Rawal Medical Journal, 50(3), 569-569 (2025) | Scopus Q4</p><p class="text-lg font-medium">Hasnain, S. I., & Saleem, D. (2025). Impact of aging on glycemic control: A gender-differentiated analysis of random blood sugar levels.</p><div class="flex flex-wrap gap-3 mt-2 text-sm items-center"><a href="https://doi.org/10.5455/rmj.2025.03.569" target="_blank" class="text-blue-200 hover:text-white transition flex items-center gap-1"><i class="fab fa-doi"></i> DOI: 10.5455/rmj.2025.03.569</a></div></div>
-                <div class="pub-card bg-white/5 p-5 rounded-xl border border-white/10"><p class="text-blue-300 text-sm font-mono">VFAST Transactions on Software Engineering, 13(3), 129-139 (2025) | Scopus</p><p class="text-lg font-medium">Hasnain, S. I., Israr, H., Faris, M., Kamal, R., & Tirmizi, H. S. Y. (2025). Evaluation of Machine Learning-Based Methods to Detect Bipolar Disorder in Individuals With Mental Health Conditions.</p><a href="https://doi.org/10.21015/vtse.v13i3.1892" target="_blank" class="text-blue-200 hover:text-white text-sm inline-flex items-center gap-1"><i class="fab fa-doi"></i> DOI: 10.21015/vtse.v13i3.1892</a></div>
-                <div class="pub-card bg-white/5 p-5 rounded-xl border border-white/10"><p class="text-blue-300 text-sm font-mono">VFAST Transactions on Software Engineering, 13(4), 01-12 (2025)</p><p class="text-lg font-medium">Faris, M., Khalid, S., Hasnain, S. I., Jamil, M., Yasmeen, H., & Arif, M. (2025). Scalable Hybrid Deep Learning-Based Architecture for Glaucoma and Healthy Eye Classification.</p><a href="https://doi.org/10.21015/vtse.v13i4.2015" target="_blank" class="text-blue-200 hover:text-white text-sm"><i class="fab fa-doi"></i> DOI: 10.21015/vtse.v13i4.2015</a></div>
-                <div class="pub-card bg-white/5 p-5 rounded-xl border border-white/10"><p class="text-blue-300 text-sm font-mono">Sir Syed University Research Journal of Engineering & Technology, 15(2), 23-31 (2025)</p><p class="text-lg font-medium">Hasnain, S. I., Faris, M., Tirmizi, H. S. Y., Kamal, R., & Javid, T. (2025). Simulation-Based ML Approach to Classify Accelerated Biological Aging Using Telomere and Epigenetic Markers.</p><a href="https://doi.org/10.33317/ssurj.452" target="_blank" class="text-blue-200 hover:text-white text-sm"><i class="fab fa-doi"></i> DOI: 10.33317/ssurj.452</a></div>
-                <div class="pub-card bg-white/5 p-5 rounded-xl border border-white/10"><p class="text-blue-300 text-sm font-mono">VFAST Transactions on Software Engineering, 14(1), 60-72 (2026)</p><p class="text-lg font-medium">Faris, M., Khalid, F., Shahid, M., Haque, Z. U., Hasnain, S. I., & Ali, M. F. (2026). Ensemble Deep Learning for Multi Class Skin Lesion Classification.</p><a href="https://doi.org/10.21015/vtse.v14i1.2280" target="_blank" class="text-blue-200 hover:text-white text-sm"><i class="fab fa-doi"></i> DOI: 10.21015/vtse.v14i1.2280</a></div>
-                <div class="pub-card bg-white/5 p-5 rounded-xl border border-white/10"><p class="text-blue-300 text-sm font-mono">arXiv preprint (2025)</p><p class="text-lg font-medium">Hasnain, S. I. (2025). Evaluation and Implementation of Machine Learning Algorithms to Predict Early Detection of Kidney and Heart Disease in Diabetic Patients. arXiv:2510.14997.</p><a href="https://arxiv.org/abs/2510.14997" target="_blank" class="text-blue-200 hover:text-white text-sm"><i class="fas fa-external-link-alt"></i> arXiv:2510.14997</a></div>
-                <div class="pt-2 text-sm text-white/70 italic border-t border-white/20 mt-4"><i class="fas fa-chalkboard-user"></i> Conference Proceedings (2026): IEEE GCWOT (Malaga) · IEEE ICCC (Hungary) · IEEE MED (Ancona) — Accepted/Under review.</div>
-            </div>
-        </section>
-
-        <!-- Footer with all social links, CV option and official email -->
-        <footer id="contact" class="border-t border-slate-200 pt-12 pb-8 mt-6">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <!-- Collaborate -->
+        <section id="collaborate">
+            <p class="section-label">02 — Collaboration</p>
+            <h2 class="section-title">Open for Research Collaboration</h2>
+            <div class="collab-banner">
                 <div>
-                    <h3 class="text-2xl font-bold text-slate-800">Connect & Collaborate</h3>
-                    <p class="text-slate-500 text-sm mt-1">Open for PhD, Postdoctoral, Research Associate positions & Co-supervision</p>
-                    <div class="flex gap-3 mt-2 text-sm flex-wrap"><span class="bg-slate-100 px-3 py-1 rounded-full"><i class="fas fa-envelope mr-1"></i> ibad.hasnain@hamdard.edu.pk</span><span class="bg-slate-100 px-3 py-1 rounded-full"><i class="fas fa-phone-alt"></i> +92 3122988418</span>
-                    <a href="Syed_Ibad_Hasnain_CV.pdf" download class="bg-slate-100 hover:bg-slate-200 px-3 py-1 rounded-full text-sm flex items-center gap-1 transition"><i class="fas fa-file-pdf text-red-500"></i> Download CV</a>
+                    <h3 class="collab-title">Let's Advance Healthcare Technology Together</h3>
+                    <p class="collab-text">I actively welcome interdisciplinary research partnerships and co-supervision opportunities in <strong>AI for Healthcare, Medical Imaging, Deep Learning, and Biomedical Signal Processing</strong>. Whether you are a fellow researcher, PhD candidate, or graduate student seeking guidance — reach out.</p>
+                    <div class="collab-pills">
+                        <span class="collab-pill"><i class="fas fa-chalkboard-user" style="margin-right:.4rem"></i> Co-supervising MSc/BSc projects</span>
+                        <span class="collab-pill"><i class="fas fa-flask" style="margin-right:.4rem"></i> Joint research proposals</span>
+                        <span class="collab-pill"><i class="fas fa-file-alt" style="margin-right:.4rem"></i> Grant collaborations</span>
                     </div>
                 </div>
-                <div class="flex flex-wrap gap-5 text-2xl text-slate-500 justify-center">
-                    <a href="mailto:ibad.hasnain@hamdard.edu.pk" class="social-icon hover:text-blue-600" aria-label="Official Email"><i class="fas fa-envelope"></i></a>
-                    <a href="https://www.linkedin.com/in/syed-ibad-hasnain-8357b41b2/" target="_blank" class="social-icon hover:text-blue-600"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/EngrSyedIbad" target="_blank" class="social-icon hover:text-slate-800"><i class="fab fa-github"></i></a>
-                    <a href="https://scholar.google.com/citations?user=9TFudOQAAAAJ&hl=en" target="_blank" class="social-icon hover:text-blue-500"><i class="fas fa-graduation-cap"></i></a>
-                    <a href="https://orcid.org/0009-0005-4249-0209" target="_blank" class="social-icon hover:text-green-600"><i class="fab fa-orcid"></i></a>
-                    <a href="https://www.researchgate.net/profile/Syed-Ibad-Hasnain-2" target="_blank" class="social-icon hover:text-teal-600"><i class="fab fa-researchgate"></i></a>
-                    <a href="https://huggingface.co/ibadhasnain" target="_blank" class="social-icon hover:text-amber-600"><i class="fas fa-robot"></i></a>
-                    <a href="https://www.hamdard.edu.pk/faculty-of-engineering-sciences-technology/" target="_blank" class="social-icon hover:text-indigo-600"><i class="fas fa-university"></i></a>
+                <div style="text-align:center">
+                    <a href="mailto:ibad.hasnain@hamdard.edu.pk?subject=Research%20Collaboration%20Inquiry" class="btn-collab"><i class="fas fa-envelope"></i> Reach out to collaborate</a>
+                    <p class="collab-email">ibad.hasnain@hamdard.edu.pk</p>
                 </div>
             </div>
-            <div class="mt-10 text-center text-xs text-slate-400 border-t pt-6">
-                <p>© 2025 Syed Ibad Hasnain — Registered Biomedical Engineer (PEC) | Faculty @ Hamdard University | All DOIs and profiles active.</p>
-                <p class="mt-1 font-mono">📍 Karachi, Pakistan | ORCID: 0009-0005-4249-0209 | Scopus: 60139886400 | <a href="Syed_Ibad_Hasnain_CV.pdf" download class="text-blue-500 hover:underline">Download full CV (PDF)</a></p>
+        </section>
+
+        <!-- Profiles -->
+        <section>
+            <p class="section-label">03 — Academic Presence</p>
+            <h2 class="section-title">Researcher Profiles</h2>
+            <div class="profiles-grid">
+                <a href="https://scholar.google.com/citations?user=9TFudOQAAAAJ&hl=en" target="_blank" class="profile-card"><i class="fas fa-graduation-cap" style="color:#4285f4"></i><span>Google Scholar</span></a>
+                <a href="https://www.scopus.com/authid/detail.uri?authorId=60139886400" target="_blank" class="profile-card"><i class="fas fa-book-open" style="color:#6f42c1"></i><span>Scopus</span></a>
+                <a href="https://www.webofscience.com/wos/author/record/73878560" target="_blank" class="profile-card"><i class="fas fa-globe" style="color:#e25c00"></i><span>Web of Science</span></a>
+                <a href="https://www.researchgate.net/profile/Syed-Ibad-Hasnain-2" target="_blank" class="profile-card"><i class="fab fa-researchgate" style="color:#00ccbb"></i><span>ResearchGate</span></a>
+                <a href="https://orcid.org/0009-0005-4249-0209" target="_blank" class="profile-card"><i class="fab fa-orcid" style="color:#a6ce39"></i><span>ORCID</span></a>
+                <a href="https://huggingface.co/ibadhasnain" target="_blank" class="profile-card"><i class="fas fa-robot" style="color:#c8923a"></i><span>Hugging Face</span></a>
+                <a href="https://github.com/EngrSyedIbad" target="_blank" class="profile-card"><i class="fab fa-github" style="color:#24292e"></i><span>GitHub</span></a>
+                <a href="https://www.linkedin.com/in/syed-ibad-hasnain-8357b41b2/" target="_blank" class="profile-card"><i class="fab fa-linkedin" style="color:#0a66c2"></i><span>LinkedIn</span></a>
             </div>
-        </footer>
+        </section>
+
+        <!-- Technical Skills -->
+        <section>
+            <p class="section-label">04 — Technical Arsenal</p>
+            <h2 class="section-title">Skills &amp; Tools</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <p class="skill-card-title"><i class="fab fa-python" style="margin-right:.4rem"></i> AI / ML Stack</p>
+                    <ul class="skill-list">
+                        <li>Python</li>
+                        <li>PyTorch</li>
+                        <li>TensorFlow</li>
+                        <li>Scikit-learn</li>
+                        <li>Hugging Face</li>
+                        <li>OpenCV</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <p class="skill-card-title"><i class="fas fa-microchip" style="margin-right:.4rem"></i> IoT &amp; Embedded</p>
+                    <ul class="skill-list">
+                        <li>Raspberry Pi</li>
+                        <li>Arduino</li>
+                        <li>ESP32</li>
+                        <li>COMSOL</li>
+                        <li>Proteus</li>
+                        <li>n8n</li>
+                    </ul>
+                </div>
+                <div class="skill-card">
+                    <p class="skill-card-title"><i class="fas fa-database" style="margin-right:.4rem"></i> Data &amp; Writing</p>
+                    <ul class="skill-list">
+                        <li>SQL</li>
+                        <li>MATLAB</li>
+                        <li>R</li>
+                        <li>LaTeX</li>
+                        <li>Mendeley</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section id="experience">
+            <p class="section-label">05 — Career</p>
+            <h2 class="section-title">Professional Journey</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <p class="timeline-date">Aug 2025 — Present</p>
+                    <h3 class="timeline-role">Lecturer – Biomedical Engineering</h3>
+                    <p class="timeline-org">Hamdard University, Faculty of Engineering, Karachi</p>
+                    <ul class="timeline-bullets">
+                        <li>Delivering courses: Medical Image Processing, Telemedicine Systems, OOP.</li>
+                        <li>Supervising undergraduate AI-driven biomedical projects and research.</li>
+                        <li>Co-supervising final year projects in AI and Healthcare.</li>
+                    </ul>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot inactive"></div>
+                    <p class="timeline-date">Aug 2024 — Jul 2025</p>
+                    <h3 class="timeline-role">IGCSE/GCE Educator — CS &amp; Physics</h3>
+                    <p class="timeline-org">The Next School – Alpha Education Network, Karachi</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot inactive"></div>
+                    <p class="timeline-date">Sep 2022 — Jul 2024</p>
+                    <h3 class="timeline-role">Mathematics &amp; Robotics Head</h3>
+                    <p class="timeline-org">Army Public School &amp; College System</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Projects -->
+        <section id="projects">
+            <p class="section-label">06 — Flagship Work</p>
+            <h2 class="section-title">Research Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <p class="project-cat"><i class="fas fa-microscope" style="margin-right:.3rem"></i> Deep Learning · CT Imaging</p>
+                    <h3 class="project-title">Hybrid CNN-KELM for Renal Lesion Classification</h3>
+                    <p class="project-desc">Achieved 99.71% accuracy (multi-class: cysts, stones, tumors) using lightweight CNNs + SMOTE. Clinically deployable AI pipeline for CT-based renal diagnosis.</p>
+                </div>
+                <div class="project-card">
+                    <p class="project-cat"><i class="fas fa-robot" style="margin-right:.3rem"></i> Agentic AI · LLM</p>
+                    <h3 class="project-title">Biomedical Device Troubleshooting Assistant</h3>
+                    <p class="project-desc">Safety-constrained agentic LLM with tool-augmented reasoning, policy enforcement, and structured QC guidance for clinical engineering workflows.</p>
+                </div>
+                <div class="project-card">
+                    <p class="project-cat"><i class="fas fa-heartbeat" style="margin-right:.3rem"></i> Predictive Healthcare</p>
+                    <h3 class="project-title">CKD &amp; CVD Risk Prediction (Diabetic Patients)</h3>
+                    <p class="project-desc">ML pipeline on Pakistan clinical dataset (n=703). Random Forest achieved 92% accuracy for early-stage kidney and heart disease detection. arXiv:2510.14997.</p>
+                </div>
+                <div class="project-card">
+                    <p class="project-cat"><i class="fas fa-wifi" style="margin-right:.3rem"></i> IoT Health</p>
+                    <h3 class="project-title">Portable Health Tracking System (COVID-19 Era)</h3>
+                    <p class="project-desc">Real-time patient monitoring (SpO₂, temperature, heart rate) with mobile app — funded by IGNITE, Ministry of IT, Pakistan.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications -->
+        <section id="publications">
+            <p class="section-label">07 — Scholarly Output</p>
+            <h2 class="section-title">Publications &amp; DOIs</h2>
+            <div class="pubs-wrapper">
+                <div class="pubs-header">
+                    <h3 class="pubs-title">Selected Publications</h3>
+                    <a href="https://scholar.google.com/citations?user=9TFudOQAAAAJ&hl=en" target="_blank" class="scholar-link"><i class="fas fa-graduation-cap" style="margin-right:.4rem"></i>Full Google Scholar Profile →</a>
+                </div>
+
+                <div class="pub-item">
+                    <p class="pub-journal">Rawal Medical Journal, 50(3), 569-569 (2025) &nbsp;·&nbsp; Scopus Q4</p>
+                    <p class="pub-authors">Hasnain, S. I., &amp; Saleem, D. (2025). Impact of aging on glycemic control: A gender-differentiated analysis of random blood sugar levels.</p>
+                    <a href="https://doi.org/10.5455/rmj.2025.03.569" target="_blank" class="pub-doi">DOI: 10.5455/rmj.2025.03.569</a>
+                </div>
+
+                <div class="pub-item">
+                    <p class="pub-journal">VFAST Transactions on Software Engineering, 13(3), 129-139 (2025) &nbsp;·&nbsp; Scopus</p>
+                    <p class="pub-authors">Hasnain, S. I., Israr, H., Faris, M., Kamal, R., &amp; Tirmizi, H. S. Y. (2025). Evaluation of Machine Learning-Based Methods to Detect Bipolar Disorder in Individuals With Mental Health Conditions.</p>
+                    <a href="https://doi.org/10.21015/vtse.v13i3.1892" target="_blank" class="pub-doi">DOI: 10.21015/vtse.v13i3.1892</a>
+                </div>
+
+                <div class="pub-item">
+                    <p class="pub-journal">VFAST Transactions on Software Engineering, 13(4), 01-12 (2025)</p>
+                    <p class="pub-authors">Faris, M., Khalid, S., Hasnain, S. I., Jamil, M., Yasmeen, H., &amp; Arif, M. (2025). Scalable Hybrid Deep Learning-Based Architecture for Glaucoma and Healthy Eye Classification.</p>
+                    <a href="https://doi.org/10.21015/vtse.v13i4.2015" target="_blank" class="pub-doi">DOI: 10.21015/vtse.v13i4.2015</a>
+                </div>
+
+                <div class="pub-item">
+                    <p class="pub-journal">Sir Syed University Research Journal of Engineering &amp; Technology, 15(2), 23-31 (2025)</p>
+                    <p class="pub-authors">Hasnain, S. I., Faris, M., Tirmizi, H. S. Y., Kamal, R., &amp; Javid, T. (2025). Simulation-Based ML Approach to Classify Accelerated Biological Aging Using Telomere and Epigenetic Markers.</p>
+                    <a href="https://doi.org/10.33317/ssurj.452" target="_blank" class="pub-doi">DOI: 10.33317/ssurj.452</a>
+                </div>
+
+                <div class="pub-item">
+                    <p class="pub-journal">VFAST Transactions on Software Engineering, 14(1), 60-72 (2026)</p>
+                    <p class="pub-authors">Faris, M., Khalid, F., Shahid, M., Haque, Z. U., Hasnain, S. I., &amp; Ali, M. F. (2026). Ensemble Deep Learning for Multi Class Skin Lesion Classification.</p>
+                    <a href="https://doi.org/10.21015/vtse.v14i1.2280" target="_blank" class="pub-doi">DOI: 10.21015/vtse.v14i1.2280</a>
+                </div>
+
+                <div class="pub-item">
+                    <p class="pub-journal">arXiv Preprint (2025)</p>
+                    <p class="pub-authors">Hasnain, S. I. (2025). Evaluation and Implementation of Machine Learning Algorithms to Predict Early Detection of Kidney and Heart Disease in Diabetic Patients. arXiv:2510.14997.</p>
+                    <a href="https://arxiv.org/abs/2510.14997" target="_blank" class="pub-doi"><i class="fas fa-external-link-alt" style="margin-right:.3rem"></i>arXiv:2510.14997</a>
+                </div>
+
+                <p class="pub-note"><i class="fas fa-chalkboard-user" style="margin-right:.4rem"></i>Conference Proceedings (2026): IEEE GCWOT (Malaga) · IEEE ICCC (Hungary) · IEEE MED (Ancona) — Accepted / Under review.</p>
+            </div>
+        </section>
+
     </main>
 
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-inner">
+            <div class="footer-grid">
+                <div>
+                    <h3 class="footer-name">Connect &amp; Collaborate</h3>
+                    <p class="footer-sub">Open for PhD · Postdoctoral · Research Associate positions &amp; Co-supervision</p>
+                    <div class="footer-contact-item"><i class="fas fa-envelope"></i> ibad.hasnain@hamdard.edu.pk</div>
+                    <div class="footer-contact-item"><i class="fas fa-phone-alt"></i> +92 312 2988418</div>
+                    <div class="footer-contact-item"><i class="fas fa-map-marker-alt"></i> Karachi, Pakistan</div>
+                </div>
+                <div>
+                    <div class="footer-icons">
+                        <a href="mailto:ibad.hasnain@hamdard.edu.pk" class="footer-icon" title="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="https://www.linkedin.com/in/syed-ibad-hasnain-8357b41b2/" target="_blank" class="footer-icon" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/EngrSyedIbad" target="_blank" class="footer-icon" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://scholar.google.com/citations?user=9TFudOQAAAAJ&hl=en" target="_blank" class="footer-icon" title="Google Scholar"><i class="fas fa-graduation-cap"></i></a>
+                        <a href="https://orcid.org/0009-0005-4249-0209" target="_blank" class="footer-icon" title="ORCID"><i class="fab fa-orcid"></i></a>
+                        <a href="https://www.researchgate.net/profile/Syed-Ibad-Hasnain-2" target="_blank" class="footer-icon" title="ResearchGate"><i class="fab fa-researchgate"></i></a>
+                        <a href="https://huggingface.co/ibadhasnain" target="_blank" class="footer-icon" title="Hugging Face"><i class="fas fa-robot"></i></a>
+                        <a href="https://www.hamdard.edu.pk/faculty-of-engineering-sciences-technology/" target="_blank" class="footer-icon" title="University Profile"><i class="fas fa-university"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-legal">© 2025 Syed Ibad Hasnain &nbsp;·&nbsp; Registered Biomedical Engineer (PEC) &nbsp;·&nbsp; ORCID: 0009-0005-4249-0209 &nbsp;·&nbsp; Scopus: 60139886400</p>
+                <a href="Syed_Ibad_Hasnain_CV.pdf" download class="footer-cv-btn"><i class="fas fa-file-pdf" style="margin-right:.4rem"></i>Download Full CV</a>
+            </div>
+        </div>
+    </footer>
+
     <script>
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
-                if(href === "#" || href === "") return;
+                if (href === '#' || href === '') return;
                 const target = document.querySelector(href);
-                if(target) {
-                    e.preventDefault();
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
+                if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
             });
         });
     </script>
