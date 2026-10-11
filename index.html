@@ -106,7 +106,6 @@
             position: relative;
             overflow: hidden;
         }
-        /* Grid-line background */
         header::before {
             content: '';
             position: absolute;
@@ -116,7 +115,6 @@
                 linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
             background-size: 60px 60px;
         }
-        /* Diagonal stripe accent */
         header::after {
             content: '';
             position: absolute;
@@ -509,6 +507,8 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
             margin-bottom: 1.8rem;
             padding-bottom: 1rem;
             border-bottom: 1px solid rgba(255,255,255,.12);
@@ -530,6 +530,52 @@
             transition: background .2s;
         }
         .scholar-link:hover { background: rgba(255,255,255,.08); }
+
+        /* Live metrics */
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: .8rem;
+            margin-bottom: .6rem;
+        }
+        .metric {
+            background: rgba(255,255,255,.05);
+            border: 1px solid rgba(255,255,255,.1);
+            border-radius: 3px;
+            padding: 1rem 1.1rem;
+        }
+        .metric-value {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem;
+            line-height: 1.1;
+            color: var(--gold-light);
+            min-height: 2.2rem;
+        }
+        .metric-label {
+            font-family: 'Space Mono', monospace;
+            font-size: .6rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,.5);
+            margin-top: .3rem;
+        }
+        .metrics-status {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            font-family: 'Space Mono', monospace;
+            font-size: .62rem;
+            color: rgba(255,255,255,.4);
+            margin-bottom: 1.6rem;
+        }
+        .live-dot {
+            width: 7px; height: 7px; border-radius: 50%;
+            background: #5b6573;
+            display: inline-block;
+        }
+        .live-dot.on { background: #34d399; box-shadow: 0 0 0 3px rgba(52,211,153,.2); }
+        .metric-value.loading { opacity: .35; }
+
         .pub-item {
             padding: 1.2rem 0;
             border-bottom: 1px solid rgba(255,255,255,.07);
@@ -537,6 +583,12 @@
         }
         .pub-item:last-of-type { border-bottom: none; }
         .pub-item:hover { padding-left: .5rem; }
+        .pub-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+        }
         .pub-journal {
             font-family: 'Space Mono', monospace;
             font-size: .65rem;
@@ -544,9 +596,29 @@
             letter-spacing: .06em;
             margin-bottom: .35rem;
         }
+        .pub-cited {
+            flex-shrink: 0;
+            font-family: 'Space Mono', monospace;
+            font-size: .62rem;
+            color: rgba(255,255,255,.7);
+            background: rgba(255,255,255,.08);
+            border-radius: 100px;
+            padding: .15rem .65rem;
+            white-space: nowrap;
+        }
+        .pub-title-link {
+            font-size: .95rem;
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            line-height: 1.5;
+            display: block;
+            margin-bottom: .25rem;
+        }
+        .pub-title-link:hover { color: var(--gold-light); }
         .pub-authors {
-            font-size: .88rem;
-            color: rgba(255,255,255,.85);
+            font-size: .85rem;
+            color: rgba(255,255,255,.75);
             line-height: 1.6;
             margin-bottom: .4rem;
         }
@@ -558,6 +630,27 @@
             transition: color .2s;
         }
         .pub-doi:hover { color: var(--gold-light); }
+        .pub-more {
+            display: flex;
+            justify-content: center;
+            gap: .8rem;
+            flex-wrap: wrap;
+            margin-top: 1.2rem;
+        }
+        .pub-more button, .pub-more a {
+            font-family: 'Space Mono', monospace;
+            font-size: .7rem;
+            letter-spacing: .06em;
+            color: var(--white);
+            background: rgba(255,255,255,.08);
+            border: 1px solid rgba(255,255,255,.18);
+            border-radius: 3px;
+            padding: .6rem 1.3rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background .2s;
+        }
+        .pub-more button:hover, .pub-more a:hover { background: rgba(255,255,255,.16); }
         .pub-note {
             margin-top: 1.2rem;
             padding-top: 1rem;
@@ -667,9 +760,10 @@
             .footer-grid { grid-template-columns: 1fr; }
             .footer-icons { justify-content: flex-start; }
             .nav-links { display: none; }
+            .metrics { grid-template-columns: repeat(2, 1fr); }
+            .pubs-wrapper { padding: 1.5rem; }
         }
 
-        /* Entry animations */
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(20px); }
             to   { opacity: 1; transform: translateY(0); }
@@ -888,50 +982,63 @@
             </div>
         </section>
 
-        <!-- Publications -->
+        <!-- Publications (live) -->
         <section id="publications">
             <p class="section-label">07 — Scholarly Output</p>
-            <h2 class="section-title">Publications &amp; DOIs</h2>
+            <h2 class="section-title">Publications &amp; Citations</h2>
             <div class="pubs-wrapper">
                 <div class="pubs-header">
-                    <h3 class="pubs-title">Selected Publications</h3>
-                    <a href="https://scholar.google.com/citations?user=9TFudOQAAAAJ&hl=en" target="_blank" class="scholar-link"><i class="fas fa-graduation-cap" style="margin-right:.4rem"></i>Full Google Scholar Profile →</a>
+                    <h3 class="pubs-title">Latest Publications</h3>
+                    <a href="https://scholar.google.com/citations?user=9TFudOQAAAAJ&hl=en&view_op=list_works&sortby=pubdate" target="_blank" rel="noopener" class="scholar-link"><i class="fas fa-graduation-cap" style="margin-right:.4rem"></i>Full Google Scholar Profile →</a>
                 </div>
 
-                <div class="pub-item">
-                    <p class="pub-journal">Rawal Medical Journal, 50(3), 569-569 (2025) &nbsp;·&nbsp; Scopus Q4</p>
-                    <p class="pub-authors">Hasnain, S. I., &amp; Saleem, D. (2025). Impact of aging on glycemic control: A gender-differentiated analysis of random blood sugar levels.</p>
-                    <a href="https://doi.org/10.5455/rmj.2025.03.569" target="_blank" class="pub-doi">DOI: 10.5455/rmj.2025.03.569</a>
+                <!-- Live metrics -->
+                <div class="metrics" id="metrics">
+                    <div class="metric"><div class="metric-value loading" id="m-cites">—</div><div class="metric-label">Citations</div></div>
+                    <div class="metric"><div class="metric-value loading" id="m-h">—</div><div class="metric-label">h-index</div></div>
+                    <div class="metric"><div class="metric-value loading" id="m-i10">—</div><div class="metric-label">i10-index</div></div>
+                    <div class="metric"><div class="metric-value loading" id="m-works">—</div><div class="metric-label">Publications</div></div>
+                </div>
+                <div class="metrics-status"><span class="live-dot" id="live-dot"></span><span id="live-text">Loading latest metrics…</span></div>
+
+                <!-- Publication list: rendered by script. The block below is a static fallback
+                     shown only if both live sources are unreachable. -->
+                <div id="pub-list">
+                    <div class="pub-item">
+                        <p class="pub-journal">Rawal Medical Journal, 50(3), 569-569 (2025) &nbsp;·&nbsp; Scopus Q4</p>
+                        <p class="pub-authors">Hasnain, S. I., &amp; Saleem, D. (2025). Impact of aging on glycemic control: A gender-differentiated analysis of random blood sugar levels.</p>
+                        <a href="https://doi.org/10.5455/rmj.2025.03.569" target="_blank" class="pub-doi">DOI: 10.5455/rmj.2025.03.569</a>
+                    </div>
+                    <div class="pub-item">
+                        <p class="pub-journal">VFAST Transactions on Software Engineering, 13(3), 129-139 (2025) &nbsp;·&nbsp; Scopus</p>
+                        <p class="pub-authors">Hasnain, S. I., Israr, H., Faris, M., Kamal, R., &amp; Tirmizi, H. S. Y. (2025). Evaluation of Machine Learning-Based Methods to Detect Bipolar Disorder in Individuals With Mental Health Conditions.</p>
+                        <a href="https://doi.org/10.21015/vtse.v13i3.1892" target="_blank" class="pub-doi">DOI: 10.21015/vtse.v13i3.1892</a>
+                    </div>
+                    <div class="pub-item">
+                        <p class="pub-journal">VFAST Transactions on Software Engineering, 13(4), 01-12 (2025)</p>
+                        <p class="pub-authors">Faris, M., Khalid, S., Hasnain, S. I., Jamil, M., Yasmeen, H., &amp; Arif, M. (2025). Scalable Hybrid Deep Learning-Based Architecture for Glaucoma and Healthy Eye Classification.</p>
+                        <a href="https://doi.org/10.21015/vtse.v13i4.2015" target="_blank" class="pub-doi">DOI: 10.21015/vtse.v13i4.2015</a>
+                    </div>
+                    <div class="pub-item">
+                        <p class="pub-journal">Sir Syed University Research Journal of Engineering &amp; Technology, 15(2), 23-31 (2025)</p>
+                        <p class="pub-authors">Hasnain, S. I., Faris, M., Tirmizi, H. S. Y., Kamal, R., &amp; Javid, T. (2025). Simulation-Based ML Approach to Classify Accelerated Biological Aging Using Telomere and Epigenetic Markers.</p>
+                        <a href="https://doi.org/10.33317/ssurj.452" target="_blank" class="pub-doi">DOI: 10.33317/ssurj.452</a>
+                    </div>
+                    <div class="pub-item">
+                        <p class="pub-journal">VFAST Transactions on Software Engineering, 14(1), 60-72 (2026)</p>
+                        <p class="pub-authors">Faris, M., Khalid, F., Shahid, M., Haque, Z. U., Hasnain, S. I., &amp; Ali, M. F. (2026). Ensemble Deep Learning for Multi Class Skin Lesion Classification.</p>
+                        <a href="https://doi.org/10.21015/vtse.v14i1.2280" target="_blank" class="pub-doi">DOI: 10.21015/vtse.v14i1.2280</a>
+                    </div>
+                    <div class="pub-item">
+                        <p class="pub-journal">arXiv Preprint (2025)</p>
+                        <p class="pub-authors">Hasnain, S. I. (2025). Evaluation and Implementation of Machine Learning Algorithms to Predict Early Detection of Kidney and Heart Disease in Diabetic Patients. arXiv:2510.14997.</p>
+                        <a href="https://arxiv.org/abs/2510.14997" target="_blank" class="pub-doi"><i class="fas fa-external-link-alt" style="margin-right:.3rem"></i>arXiv:2510.14997</a>
+                    </div>
                 </div>
 
-                <div class="pub-item">
-                    <p class="pub-journal">VFAST Transactions on Software Engineering, 13(3), 129-139 (2025) &nbsp;·&nbsp; Scopus</p>
-                    <p class="pub-authors">Hasnain, S. I., Israr, H., Faris, M., Kamal, R., &amp; Tirmizi, H. S. Y. (2025). Evaluation of Machine Learning-Based Methods to Detect Bipolar Disorder in Individuals With Mental Health Conditions.</p>
-                    <a href="https://doi.org/10.21015/vtse.v13i3.1892" target="_blank" class="pub-doi">DOI: 10.21015/vtse.v13i3.1892</a>
-                </div>
-
-                <div class="pub-item">
-                    <p class="pub-journal">VFAST Transactions on Software Engineering, 13(4), 01-12 (2025)</p>
-                    <p class="pub-authors">Faris, M., Khalid, S., Hasnain, S. I., Jamil, M., Yasmeen, H., &amp; Arif, M. (2025). Scalable Hybrid Deep Learning-Based Architecture for Glaucoma and Healthy Eye Classification.</p>
-                    <a href="https://doi.org/10.21015/vtse.v13i4.2015" target="_blank" class="pub-doi">DOI: 10.21015/vtse.v13i4.2015</a>
-                </div>
-
-                <div class="pub-item">
-                    <p class="pub-journal">Sir Syed University Research Journal of Engineering &amp; Technology, 15(2), 23-31 (2025)</p>
-                    <p class="pub-authors">Hasnain, S. I., Faris, M., Tirmizi, H. S. Y., Kamal, R., &amp; Javid, T. (2025). Simulation-Based ML Approach to Classify Accelerated Biological Aging Using Telomere and Epigenetic Markers.</p>
-                    <a href="https://doi.org/10.33317/ssurj.452" target="_blank" class="pub-doi">DOI: 10.33317/ssurj.452</a>
-                </div>
-
-                <div class="pub-item">
-                    <p class="pub-journal">VFAST Transactions on Software Engineering, 14(1), 60-72 (2026)</p>
-                    <p class="pub-authors">Faris, M., Khalid, F., Shahid, M., Haque, Z. U., Hasnain, S. I., &amp; Ali, M. F. (2026). Ensemble Deep Learning for Multi Class Skin Lesion Classification.</p>
-                    <a href="https://doi.org/10.21015/vtse.v14i1.2280" target="_blank" class="pub-doi">DOI: 10.21015/vtse.v14i1.2280</a>
-                </div>
-
-                <div class="pub-item">
-                    <p class="pub-journal">arXiv Preprint (2025)</p>
-                    <p class="pub-authors">Hasnain, S. I. (2025). Evaluation and Implementation of Machine Learning Algorithms to Predict Early Detection of Kidney and Heart Disease in Diabetic Patients. arXiv:2510.14997.</p>
-                    <a href="https://arxiv.org/abs/2510.14997" target="_blank" class="pub-doi"><i class="fas fa-external-link-alt" style="margin-right:.3rem"></i>arXiv:2510.14997</a>
+                <div class="pub-more" id="pub-more" hidden>
+                    <button type="button" id="pub-toggle">Show more publications</button>
+                    <a href="https://scholar.google.com/citations?user=9TFudOQAAAAJ&hl=en&view_op=list_works&sortby=pubdate" target="_blank" rel="noopener">View all on Google Scholar →</a>
                 </div>
 
                 <p class="pub-note"><i class="fas fa-chalkboard-user" style="margin-right:.4rem"></i>Conference Proceedings (2026): IEEE GCWOT (Malaga) · IEEE ICCC (Hungary) · IEEE MED (Ancona) — Accepted / Under review.</p>
@@ -965,13 +1072,14 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p class="footer-legal">© 2025 Syed Ibad Hasnain &nbsp;·&nbsp; Registered Biomedical Engineer (PEC) &nbsp;·&nbsp; ORCID: 0009-0005-4249-0209 &nbsp;·&nbsp; Scopus: 60139886400</p>
+                <p class="footer-legal">© 2025–2026 Syed Ibad Hasnain &nbsp;·&nbsp; Registered Biomedical Engineer (PEC) &nbsp;·&nbsp; ORCID: 0009-0005-4249-0209 &nbsp;·&nbsp; Scopus: 60139886400</p>
                 <a href="Syed_Ibad_Hasnain_CV.pdf" download class="footer-cv-btn"><i class="fas fa-file-pdf" style="margin-right:.4rem"></i>Download Full CV</a>
             </div>
         </div>
     </footer>
 
     <script>
+        /* Smooth in-page scrolling */
         document.querySelectorAll('a[href^="#"]').forEach(a => {
             a.addEventListener('click', function(e) {
                 const href = this.getAttribute('href');
@@ -980,6 +1088,166 @@
                 if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
             });
         });
+
+        /* ─────────────────────────────────────────────────────────────
+           LIVE PUBLICATIONS & METRICS
+           Source 1: scholar.json  (Google Scholar, refreshed daily by the
+                     GitHub Action in update-scholar.yml — exact Scholar numbers)
+           Source 2: OpenAlex API  (live in the browser, free, no key, by ORCID)
+           Fallback: the static list already in the HTML.
+           Google Scholar and ResearchGate have no public API and block
+           browser requests (CORS), so they cannot be queried directly.
+        ───────────────────────────────────────────────────────────── */
+        const CONFIG = {
+            scholarId: '9TFudOQAAAAJ',
+            orcid: '0009-0005-4249-0209',
+            contactEmail: 'ibad.hasnain@hamdard.edu.pk', // gives OpenAlex's faster "polite" pool
+            initialCount: 8,
+            scholarJsonMaxAgeDays: 14   // ignore scholar.json if it is older than this
+        };
+        const SCHOLAR_PROFILE = 'https://scholar.google.com/citations?user=' + CONFIG.scholarId + '&hl=en';
+
+        const $ = id => document.getElementById(id);
+        const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        const fmt = n => (typeof n === 'number' ? n.toLocaleString('en-US') : '—');
+
+        function setMetrics(m) {
+            [['m-cites', m.citations], ['m-h', m.hIndex], ['m-i10', m.i10Index], ['m-works', m.works]].forEach(([id, v]) => {
+                const el = $(id);
+                el.textContent = fmt(v);
+                el.classList.remove('loading');
+            });
+        }
+        function setStatus(text, live) {
+            $('live-text').textContent = text;
+            $('live-dot').classList.toggle('on', !!live);
+        }
+
+        function trimAuthors(list, max = 6) {
+            if (!list || !list.length) return '';
+            return list.length > max ? list.slice(0, max).join(', ') + ', et al.' : list.join(', ');
+        }
+
+        function pubHTML(p) {
+            const cited = p.citations > 0
+                ? `<span class="pub-cited" title="Citations">Cited by ${fmt(p.citations)}</span>` : '';
+            const meta = [p.venue, p.year].filter(Boolean).join(' · ');
+            const title = p.url
+                ? `<a class="pub-title-link" href="${esc(p.url)}" target="_blank" rel="noopener">${esc(p.title)}</a>`
+                : `<span class="pub-title-link">${esc(p.title)}</span>`;
+            const doi = p.doi
+                ? `<a href="${esc(p.doi)}" target="_blank" rel="noopener" class="pub-doi">DOI: ${esc(p.doi.replace(/^https?:\/\/(dx\.)?doi\.org\//, ''))}</a>`
+                : '';
+            return `<div class="pub-item">
+                <div class="pub-top"><p class="pub-journal">${esc(meta)}</p>${cited}</div>
+                ${title}
+                ${p.authors ? `<p class="pub-authors">${esc(p.authors)}</p>` : ''}
+                ${doi}
+            </div>`;
+        }
+
+        function renderPubs(pubs) {
+            const list = $('pub-list');
+            const more = $('pub-more');
+            const toggle = $('pub-toggle');
+            let expanded = false;
+
+            function paint() {
+                const shown = expanded ? pubs : pubs.slice(0, CONFIG.initialCount);
+                list.innerHTML = shown.map(pubHTML).join('');
+                toggle.textContent = expanded ? 'Show fewer' : `Show more publications (${pubs.length - CONFIG.initialCount} more)`;
+            }
+            paint();
+            if (pubs.length > CONFIG.initialCount) {
+                more.hidden = false;
+                toggle.onclick = () => { expanded = !expanded; paint(); };
+                toggle.hidden = false;
+            } else {
+                more.hidden = false;
+                toggle.hidden = true;
+            }
+        }
+
+        const sortPubs = pubs => pubs.slice().sort((a, b) => (b.year || 0) - (a.year || 0) || (b.citations || 0) - (a.citations || 0));
+
+        /* ── Source 1: Google Scholar snapshot ── */
+        async function fromScholarJson() {
+            const res = await fetch('scholar.json?_=' + Date.now(), { cache: 'no-store' });
+            if (!res.ok) throw new Error('scholar.json ' + res.status);
+            const d = await res.json();
+            if (!d || !Array.isArray(d.publications) || !d.publications.length) throw new Error('empty scholar.json');
+            const ageDays = d.updated ? (Date.now() - new Date(d.updated).getTime()) / 864e5 : Infinity;
+            if (ageDays > CONFIG.scholarJsonMaxAgeDays) throw new Error('scholar.json is stale');
+            return {
+                source: 'Google Scholar',
+                updated: d.updated,
+                metrics: { citations: d.citations, hIndex: d.h_index, i10Index: d.i10_index, works: d.publications.length },
+                pubs: sortPubs(d.publications.map(p => ({
+                    title: p.title, year: p.year, venue: p.venue, citations: p.citations || 0,
+                    authors: p.authors, url: p.url, doi: p.doi
+                })))
+            };
+        }
+
+        /* ── Source 2: OpenAlex (live) ── */
+        async function fromOpenAlex() {
+            const mail = encodeURIComponent(CONFIG.contactEmail);
+            const orcidUrl = 'https://orcid.org/' + CONFIG.orcid;
+            const [authorRes, worksRes] = await Promise.all([
+                fetch(`https://api.openalex.org/authors/${orcidUrl}?mailto=${mail}`),
+                fetch(`https://api.openalex.org/works?filter=author.orcid:${orcidUrl}&sort=publication_date:desc&per-page=100&mailto=${mail}`)
+            ]);
+            if (!authorRes.ok || !worksRes.ok) throw new Error('OpenAlex request failed');
+            const author = await authorRes.json();
+            const works = await worksRes.json();
+            if (!works.results || !works.results.length) throw new Error('OpenAlex returned no works');
+            const stats = author.summary_stats || {};
+            return {
+                source: 'OpenAlex',
+                updated: new Date().toISOString(),
+                metrics: {
+                    citations: author.cited_by_count,
+                    hIndex: stats.h_index,
+                    i10Index: stats.i10_index,
+                    works: author.works_count ?? works.results.length
+                },
+                pubs: works.results.map(w => ({
+                    title: (w.display_name || w.title || '').replace(/<[^>]+>/g, ''),
+                    year: w.publication_year,
+                    venue: w.primary_location && w.primary_location.source ? w.primary_location.source.display_name : '',
+                    citations: w.cited_by_count || 0,
+                    authors: trimAuthors((w.authorships || []).map(a => a.author && a.author.display_name).filter(Boolean)),
+                    url: w.doi || (w.primary_location && w.primary_location.landing_page_url) || '',
+                    doi: w.doi || ''
+                }))
+            };
+        }
+
+        async function loadLive() {
+            let data = null;
+            try { data = await fromScholarJson(); }
+            catch (e) {
+                try { data = await fromOpenAlex(); } catch (e2) { data = null; }
+            }
+
+            if (!data) {
+                // Keep the static fallback list; show a link to the live profile instead of numbers.
+                ['m-cites','m-h','m-i10','m-works'].forEach(id => { $(id).textContent = '—'; $(id).classList.remove('loading'); });
+                setStatus('Live data unavailable right now — see Google Scholar for current numbers.', false);
+                $('pub-more').hidden = false;
+                $('pub-toggle').hidden = true;
+                return;
+            }
+
+            setMetrics(data.metrics);
+            renderPubs(data.pubs);
+            const when = data.updated
+                ? new Date(data.updated).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })
+                : '';
+            setStatus(`Source: ${data.source}${when ? ' · updated ' + when : ''}`, true);
+        }
+
+        loadLive();
     </script>
 </body>
 </html>
